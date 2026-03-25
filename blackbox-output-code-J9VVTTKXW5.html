@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALO ANAS - French Tacos Specialists</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #a29bfe);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            background: rgba(255,255,255,0.95);
+            padding: 40px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff6b6b);
+            animation: slide 3s infinite;
+        }
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #d63031, #e17055, #fdcb6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            font-size: 1.5rem;
+            color: #636e72;
+            font-style: italic;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ff4757" width="1200" height="600"/><circle fill="%23fff" cx="150" cy="100" r="60"/><rect fill="%23ffd700" x="300" y="200" width="120" height="80" rx="15"/><circle fill="%23ff6348" cx="800" cy="250" r="70"/><rect fill="%23e67e22" x="900" y="350" width="150" height="100" rx="20"/><path fill="%23dc143c" d="M200 450 Q600 500 1000 450 L1000 600 L200 600 Z"/></svg>');
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            position: relative;
+            max-width: 800px;
+        }
+        .menu-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .menu-item {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .menu-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .menu-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .menu-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,107,107,0.8), rgba(78,205,196,0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .menu-item:hover .menu-image::after {
+            opacity: 1;
+        }
+        .menu-content {
+            padding: 25px;
+            text-align: center;
+        }
+        .menu-title {
+            font-size: 1.6rem;
+            color: #2d3436;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .menu-desc {
+            color: #636e72;
+            margin-bottom: 18px;
+            font-size: 1.1rem;
+        }
+        .price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-top: 10px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .info-card {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 3px solid transparent;
+        }
+        .info-card:hover {
+            transform: translateY(-10px);
+            border-color: #ff6b6b;
+        }
+        .info-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .service-options {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .service-item {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,184,148,0.4);
+            transition: all 0.3s ease;
+        }
+        .service-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,184,148,0.6);
+        }
+        .address {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        .phone {
+            font-size: 2rem;
+            color: #00b894;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .phone:hover {
+            color: #00a085;
+            transform: scale(1.1);
+        }
+        .hours {
+            background: linear-gradient(135deg, #fdcb6e, #e17055, #d63031);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 10px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(231,76,60,0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(231,76,60,0.6);
+        }
+        .travel-info {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+            font-size: 1.2rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            margin-top: 40px;
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .menu-gallery { grid-template-columns: 1fr; }
+            .price { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍽️ ALO ANAS</h1>
+            <p class="tagline">French Tacos Specialists | Best Prices in Casablanca</p>
+        </header>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h2 style="font-size: 3rem; margin-bottom: 20px;">🥪 FRENCH TACOS FROM 22DH</h2>
+                <p style="font-size: 1.4rem;">Crispy. Cheesy. Affordable. Unbeatable quality!</p>
+            </div>
+        </div>
+
+        <div class="menu-gallery">
+            <div class="menu-item">
+                <div class="menu-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22><rect fill=%22%23ff6b6b%22 width=%22400%22 height=%22250%22 rx=%2220%22/><rect fill=%22%23fff%22 x=%2280%22 y=%2280%22 width=%22240%22 height=%22100%22 rx=%2210%22/><circle fill=%22%23ffd700%22 cx=%22200%22 cy=%22130%22 r=%2230%22/><path fill=%22%23ff6348%22 d=%22M50 180 Q200 220 350 180 L350 250 L50 250 Z%22/><text x=%22200%22 y=%22220%22 font-size=%2214%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22bold%22>POULET</text></svg>');"></div>
+                <div class="menu-content">
+                    <div class="menu-title">🐔 TACOS POULET</div>
+                    <div class="menu-desc">Tender chicken, crispy fries, signature sauce, melted cheese</div>
+                    <div class="price">22 DH</div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22><rect fill=%22%2348dbfb%22 width=%22400%22 height=%22250%22 rx=%2225%22/><rect fill=%22%23fff%22 x=%2260%22 y=%2260%22 width=%22300%22 height=%22140%22 rx=%2215%22/><circle fill=%22%23f39c12%22 cx=%22200%22 cy=%22120%22 r=%2240%22/><path fill=%22%23e67e22%22 d=%22M280 160 Q360 200 390 170 L390 250 L280 250 Q230 230 280 190 Z%22/><text x=%22200%22 y=%22220%22 font-size=%2214%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22bold%22>XLARGE</text></svg>');"></div>
+                <div class="menu-content">
+                    <div class="menu-title">🥪 TACOS XLARGE</div>
+                    <div class="menu-desc">Monster size! Double filling, extra fries, double cheese</div>
+                    <div class="price">40 DH</div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22><rect fill=%22%23ff9ff3%22 width=%22400%22 height=%22250%22 rx=%2220%22/><rect fill=%22%23ffeaa7%22 x=%2270%22 y=%2270%22 width=%22260%22 height=%22110%22 rx=%2212%22/><circle fill=%22%23fdcb6e%22 cx=%22210%22 cy=%22125%22 r=%2235%22/><path fill=%22%23e17055%22 d=%22M260 150 Q340 190 385 160 L385 250 L260 250 Q210 225 260 185 Z%22/><text x=%22200%22 y=%22220%22 font-size=%2212%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22bold%22>SMOKEY</text></svg>');"></div>
+                <div class="menu-content">
+                    <div class="menu-title">🔥 TACOS SMOKEY</div>
+                    <div class="menu-desc">Smoky BBQ sauce, grilled meats, spicy kick, cheese overload</div>
+                    <div class="price">27 DH</div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-image" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 250%22><rect fill=%22%23a29bfe%22 width=%22400%22 height=%22250%22 rx=%2220%22/><rect fill=%22%23fff%22 x=%2280%22 y=%2280%22 width=%22240%22 height=%2290%22 rx=%2210%22/><circle fill=%22%2300b894%22 cx=%22200%22 cy=%22125%22 r=%2230%22/><path fill=%22%23fd79a8%22 d=%22M240 140 Q320 180 380 150 L380 250 L240 250 Q190 225 240 190 Z%22/><text x=%22200%22 y=%22220%22 font-size=%2214%22 fill=%22white%22 text-anchor=%22middle%22 font-weight=%22bold%22>DOUBLE</text></svg>');"></div>
+                <div class="menu-content">
+                    <div class="menu-title">🧀 TACOS DOUBLE FROMAGE</div>
+                    <div class="menu-desc">Double mozzarella + cheddar, creamy sauce, perfect melt</div>
+                    <div class="price">25 DH</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="info-icon">📍</span>
+                <h3>Address</h3>
+                <div class="address">23 Rue 33<br>Casablanca 20600</div>
+            </div>
+
+            <div class="info-card">
+                <span class="info-icon">📞</span>
+                <h3>Phone</h3>
+                <p>Call now for orders!</p>
+                <a href="tel:+212770405173" class="phone">07 70 40 51 73</a>
+            </div>
+
+            <div class="info-card">
+                <span class="info-icon">🕒</span>
+                <h3>Hours</h3>
+                <div class="hours">
+                    <strong>✅ OPEN NOW</strong><br>
+                    Closes at 11:30 PM
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span class="info-icon">☀️</span>
+                <h3>Services</h3>
+                <div class="service-options">
+                    <div class="service-item">🌤️ Outdoor seating</div>
+                    <div class="service-item">👶 High chairs</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="travel-info">
+            <h2 style="color: #2d3436; margin-bottom: 20px;">🚀 Get Here Fast!</h2>
+            <div style="font-size: 1.4rem; color: #636e72;">
+                🚗 <strong>20 min</strong> drive<br>
+               
